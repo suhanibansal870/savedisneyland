@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Save Disneyland! - Environmental Impact</title>
+    <script src="DisplayError.js"></script>
+    <script
+      crossorigin
+      src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/addons/p5.sound.min.js"
+    ></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Dancing+Script:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+  </head>
+  <body>
+    <main>
+      <section id="introduction" class="intro-hero">
+        <div class="intro-overlay">
+          <h1 class="message blink">Save Disneyland!</h1>
+          <div class="subtitle">
+            Why should our next generation be deprived of what we have?
+          </div>
+          <p>
+            Learning about Los Angeles's <b>temperature increase</b> and
+            <b>air quality</b> is crucial. If we cannot convince people to find
+            solutions, maintain air quality, and take action, Disneyland's
+            modern culture and entertainment in Los Angeles will
+            <b>not be as enjoyable</b>. Let’s show you some patterns and how we
+            can show children to continue to have the best experience in
+            Disneyland.
+          </p>
+          <nav class="navigation">
+            <a href="#risingTemp"
+              ><button class="button">Rising Temperatures</button></a
+            >
+            <a href="#airPollution"
+              ><button class="button">Air Pollution</button></a
+            >
+            <a href="#observations"
+              ><button class="button">What can we see?</button></a
+            >
+            <a href="#action"
+              ><button class="button">What can we do?</button></a
+            >
+          </nav>
+        </div>
+      </section>
+      <section id="risingTemp" class="risingTemp">
+        <h1 id="temp_head">Rising Temperatures in L.A</h1>
+        <h3>Average annual temperatures by decade (from 1964 to 2024)</h3>
+        <a
+          target="_blank"
+          href="https://www.ncei.noaa.gov/access/monitoring/climate-at-a-glance/city/time-series/USW00023174/tavg/1/9/1895-2024?base_prd=true&begbaseyear=1901&endbaseyear=2000"
+        >
+          <h5 id="data_scr_name1">
+            Data source (National Centers for Environmental Information)
+          </h5>
+        </a>
+        <h5>*Temperature measured in °F</h5>
+
+        <div id="c2"></div>
+
+        <p>
+          Temperatures in Los Angeles have risen from 65.8°F in 1954 to 75°F in
+          2024, causing heat stress and discomfort for Disneyland visitors. The
+          rising heat also worsens air quality and increases the risk of
+          heat-related illnesses, highlighting the need to address climate
+          change.
+        </p>
+
+        <!-- <img class="hot" src="assets/hotla.jpg" alt="Hot day in Los Angeles" /> -->
+      </section>
+
+      <section id="airPollution">
+        <h1>Air Pollution in Los Angeles</h1>
+        <h3>Air Quality Index in 2020 vs. 2024</h3>
+        <a
+          target="_blank"
+          href="https://www.epa.gov/air-trends/air-quality-cities-and-counties"
+        >
+          <h5>Data source (US Environmental Protection Agency)</h5>
+        </a>
+      </section>
+      <section>
+        <div id="c1"></div>
+        <div id="c3"></div>
+      </section>
+      <section>
+        <img
+          class="air"
+          src="assets/airpol.jpg"
+          alt="Air pollution in Los Angeles"
+        />
+        <p>
+          Los Angeles air quality has improved since the 1990 Clean Air Act,
+          with carbon monoxide levels falling from 5.8 ppm in 1993 to 1.1 ppm in
+          2023. Despite this, carbon monoxide remains a health risk, and ongoing
+          emissions from vehicles and industries highlight the need for further
+          reductions to protect areas like Los Angeles and Disneyland.
+        </p>
+      </section>
+
+      <section id="observations" class="risingTemp">
+        <h1>What can we see from the data?</h1>
+        <div class="row">
+          <div class="column">
+            <p id="conclusion">
+              To save Disneyland and protect its future, we need to
+              <b
+                ><i
+                  >take strong action against air pollution and rising
+                  temperatures</i
+                ></b
+              >. While air quality is improving, it's still not enough, and
+              temperatures continue to rise globally, threatening both the
+              environment and places like Disneyland that rely on clean air and
+              a stable climate.
+            </p>
+            <p id="conclusion">
+              <i
+                >If you want your children and future generations to experience
+                the magic of Disneyland, it's crucial to support initiatives
+                that reduce pollution, promote clean energy, and tackle climate
+                change.</i
+              >
+              Take action now—advocate for better environmental policies, reduce
+              your carbon footprint, and push for cleaner technologies.
+              Together, we can protect Disneyland and the world we love for
+              generations to come.
+            </p>
+          </div>
+          <div class="column">
+            <iframe
+              src="https://docs.google.com/presentation/d/e/2PACX-1vSDVk3J3EfRYWtk7g0o5rob3M9z6HC2U84HE6tnhVNckKH11tf1n_jGAYgtFtR9suE-SqGoRqj5js2R/embed?start=true&loop=false&delayms=3000"
+              frameborder="0"
+              allowfullscreen="true"
+              mozallowfullscreen="true"
+              webkitallowfullscreen="true"
+              id="slideshow"
+              title="Environmental Impact Presentation"
+            ></iframe>
+          </div>
+        </div>
+      </section>
+
+      <section id="action">
+        <h1>What Can We Do About It?</h1>
+        <h2>Residents</h2>
+        <ul class="action-list">
+          <li>Use public transportation and carpool lanes</li>
+          <li>Bike and walk when possible</li>
+        </ul>
+        <h2>Tourists</h2>
+        <ul class="action-list">
+          <li>Raise awareness about these issues on social media</li>
+          <li>Promote renewable energy and natural gas over fossil fuels</li>
+          <li>Convince companies to reduce fossil fuel emissions</li>
+        </ul>
+      </section>
+      <div class="row">
+        <a href="#introduction"
+          ><button class="button">Back to the top</button></a
+        >
+      </div>
+    </main>
+
+    <!-- Floating Chatbot Widget -->
+    <div class="chatbot-widget" id="chatbot-widget">
+      <div class="chatbot-header">
+        Ecology Chatbot
+        <button class="chatbot-close" id="chatbot-close" title="Close Chat">
+          ×
+        </button>
+      </div>
+      <div class="chat-messages" id="chat-messages">
+        <div class="answer bot-message">
+          Hello! I'm your Cohere-powered chatbot. How can I help you today?
+        </div>
+        <div class="typing-indicator" id="typing-indicator">
+          Bot is typing...
+        </div>
+      </div>
+      <div class="chat-input">
+        <input
+          type="text"
+          id="user-input"
+          placeholder="Type your message here..."
+          autocomplete="off"
+        />
+        <button id="send-button">Send</button>
+      </div>
+    </div>
+    <button class="chatbot-fab highlight" id="chatbot-fab" title="Chat with us">
+      💬
+    </button>
+
+    <script>
+      // Floating Chatbot Show/Hide Logic
+      const chatbotWidget = document.getElementById("chatbot-widget");
+      const chatbotFab = document.getElementById("chatbot-fab");
+      const chatbotClose = document.getElementById("chatbot-close");
+      chatbotFab.onclick = () => {
+        chatbotWidget.style.display = "flex";
+        chatbotFab.style.display = "none";
+      };
+      chatbotClose.onclick = () => {
+        chatbotWidget.style.display = "none";
+        chatbotFab.style.display = "block";
+      };
+      // Show FAB by default, hide chatbot
+      chatbotWidget.style.display = "none";
+      chatbotFab.style.display = "block";
+    </script>
+
+    <script src="sketch1.js"></script>
+    <script src="sketch2.js"></script>
+    <script src="sketch3.js"></script>
+    <script src="script.js"></script>
+    <script src="chatbot.js"></script>
+  </body>
+</html>
