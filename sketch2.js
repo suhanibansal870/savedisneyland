@@ -1,14 +1,15 @@
 let sk5 = function (p) {
-  let gameState = "intro";
-  let questionIndex = 0;
-  let score = 0;
-  let currentQuestion = {};
-  let feedbackText = "";
-  let correctChoice = "";
-  let playerChoice = "";
-  let finalCharacterIndex = 0;
+  // --- State variables ---
+  let gameState,
+    questionIndex,
+    score,
+    currentQuestion,
+    feedbackText,
+    correctChoice,
+    playerChoice;
 
-  let questions = [
+  // --- Questions array ---
+  const questions = [
     {
       text: "🌍 What exactly *is* climate change?",
       options: [
@@ -74,178 +75,8 @@ let sk5 = function (p) {
     },
   ];
 
-  function drawMickey(x, y) {
-    // Ears (with highlight)
-    p.noStroke();
-    p.fill(30);
-    p.ellipse(x - 22, y - 22, 28, 28);
-    p.ellipse(x + 22, y - 22, 28, 28);
-    p.fill(60);
-    p.ellipse(x - 18, y - 26, 10, 8);
-    p.ellipse(x + 18, y - 26, 10, 8);
-    // Head
-    p.fill(30);
-    p.ellipse(x, y, 46, 46);
-    p.fill(70);
-    p.ellipse(x - 10, y - 10, 10, 8);
-    // Face
-    p.fill(255, 220, 180);
-    p.ellipse(x, y + 10, 32, 26);
-    // Eyes
-    p.fill(255);
-    p.ellipse(x - 6, y + 6, 6, 10);
-    p.ellipse(x + 6, y + 6, 6, 10);
-    p.fill(0);
-    p.ellipse(x - 6, y + 9, 2, 4);
-    p.ellipse(x + 6, y + 9, 2, 4);
-    // Nose
-    p.fill(0);
-    p.ellipse(x, y + 16, 8, 5);
-    // Smile
-    p.noFill();
-    p.stroke(80, 40, 20);
-    p.strokeWeight(2);
-    p.arc(x, y + 18, 14, 8, 0, p.PI);
-    p.noStroke();
-  }
-
-  function drawMinnie(x, y) {
-    // Ears
-    p.noStroke();
-    p.fill(30);
-    p.ellipse(x - 22, y - 22, 28, 28);
-    p.ellipse(x + 22, y - 22, 28, 28);
-    p.fill(60);
-    p.ellipse(x - 18, y - 26, 10, 8);
-    p.ellipse(x + 18, y - 26, 10, 8);
-    // Head
-    p.fill(30);
-    p.ellipse(x, y, 46, 46);
-    p.fill(70);
-    p.ellipse(x - 10, y - 10, 10, 8);
-    // Face
-    p.fill(255, 220, 180);
-    p.ellipse(x, y + 10, 32, 26);
-    // Eyes
-    p.fill(255);
-    p.ellipse(x - 6, y + 6, 6, 10);
-    p.ellipse(x + 6, y + 6, 6, 10);
-    p.fill(0);
-    p.ellipse(x - 6, y + 9, 2, 4);
-    p.ellipse(x + 6, y + 9, 2, 4);
-    // Bow
-    p.fill(255, 60, 120);
-    p.ellipse(x, y - 20, 20, 12);
-    p.ellipse(x - 10, y - 20, 10, 12);
-    p.ellipse(x + 10, y - 20, 10, 12);
-    p.fill(255, 120, 180, 200);
-    p.ellipse(x, y - 20, 7, 7);
-    // Nose
-    p.fill(0);
-    p.ellipse(x, y + 16, 8, 5);
-    // Smile
-    p.noFill();
-    p.stroke(80, 40, 20);
-    p.strokeWeight(2);
-    p.arc(x, y + 18, 14, 8, 0, p.PI);
-    p.noStroke();
-  }
-
-  function drawDonald(x, y) {
-    // Head
-    p.noStroke();
-    p.fill(255);
-    p.ellipse(x, y, 38, 38);
-    // Cheek shading
-    p.fill(230, 240, 255, 90);
-    p.ellipse(x + 8, y + 8, 16, 10);
-    // Beak
-    p.fill(255, 210, 60);
-    p.ellipse(x, y + 17, 22, 12);
-    p.fill(255, 180, 40);
-    p.ellipse(x, y + 21, 18, 7);
-    // Eyes
-    p.fill(255);
-    p.ellipse(x - 6, y - 2, 7, 12);
-    p.ellipse(x + 6, y - 2, 7, 12);
-    p.fill(0);
-    p.ellipse(x - 6, y + 2, 2, 5);
-    p.ellipse(x + 6, y + 2, 2, 5);
-    // Hat
-    p.fill(0, 100, 255);
-    p.arc(x, y - 16, 22, 14, p.PI, 0);
-    p.fill(0, 100, 255);
-    p.rect(x - 7, y - 24, 14, 7, 3);
-    p.fill(255);
-    p.ellipse(x, y - 16, 6, 4);
-  }
-
-  function drawGoofy(x, y) {
-    // Head
-    p.noStroke();
-    p.fill(110, 60, 20);
-    p.ellipse(x, y, 36, 44);
-    // Ears
-    p.fill(30);
-    p.ellipse(x - 20, y + 8, 10, 32);
-    p.ellipse(x + 20, y + 8, 10, 32);
-    // Snout
-    p.fill(240, 200, 150);
-    p.ellipse(x, y + 22, 22, 18);
-    // Nose
-    p.fill(0);
-    p.ellipse(x, y + 28, 8, 6);
-    // Eyes
-    p.fill(255);
-    p.ellipse(x - 6, y + 4, 8, 13);
-    p.ellipse(x + 6, y + 4, 8, 13);
-    p.fill(0);
-    p.ellipse(x - 6, y + 8, 2, 4);
-    p.ellipse(x + 6, y + 8, 2, 4);
-    // Smile
-    p.noFill();
-    p.stroke(80, 40, 20);
-    p.strokeWeight(2);
-    p.arc(x, y + 22, 15, 8, 0, p.PI);
-    p.noStroke();
-    // Hat
-    p.fill(140, 220, 80);
-    p.rect(x - 8, y - 26, 16, 10, 4);
-    p.fill(80, 180, 40);
-    p.ellipse(x, y - 26, 16, 8);
-  }
-
-  function drawPluto(x, y) {
-    // Head
-    p.noStroke();
-    p.fill(230, 180, 40);
-    p.ellipse(x, y, 40, 32);
-    // Ears
-    p.fill(30);
-    p.ellipse(x - 22, y, 12, 28);
-    p.ellipse(x + 22, y, 12, 28);
-    // Nose
-    p.fill(0);
-    p.ellipse(x, y + 14, 10, 7);
-    // Eyes
-    p.fill(255);
-    p.ellipse(x - 7, y - 4, 8, 10);
-    p.ellipse(x + 7, y - 4, 8, 10);
-    p.fill(0);
-    p.ellipse(x - 7, y - 1, 2, 4);
-    p.ellipse(x + 7, y - 1, 2, 4);
-    // Smile
-    p.noFill();
-    p.stroke(80, 40, 20);
-    p.strokeWeight(2);
-    p.arc(x, y + 10, 16, 8, 0, p.PI);
-    p.noStroke();
-    // Collar
-    p.fill(40, 120, 200);
-    p.rect(x - 14, y + 6, 28, 4, 2);
-  }
-
-  let disneyFacts = [
+  // --- Disney facts with character drawing functions ---
+  const disneyFacts = [
     {
       character: "Mickey",
       fact: "Mickey Mouse debuted in 1928!",
@@ -273,8 +104,7 @@ let sk5 = function (p) {
     },
   ];
 
-  p.preload = function () {};
-
+  // --- Setup ---
   p.setup = function () {
     p.createCanvas(800, 500);
     p.textFont("Verdana");
@@ -283,68 +113,68 @@ let sk5 = function (p) {
     resetGame();
   };
 
+  // --- Draw Loop ---
   p.draw = function () {
     drawBackground();
 
     p.fill(30);
     p.noStroke();
 
-    if (gameState === "intro") {
-      p.textSize(28);
-      p.text("🌿 Welcome to Eco Quest! 🌎", p.width / 2, p.height / 2 - 40);
-      p.textSize(18);
-      p.text("Press ENTER to begin your adventure.", p.width / 2, p.height / 2);
-    } else if (gameState === "question") {
-      drawQuestion(currentQuestion);
-      drawDisneyCorner(questionIndex % disneyFacts.length);
-    } else if (gameState === "feedback") {
-      p.textSize(22);
-      p.text(feedbackText, p.width / 2, p.height / 2 - 30);
-      p.textSize(16);
-      p.text("Press ENTER to continue.", p.width / 2, p.height / 2 + 30);
-      drawDisneyCorner(questionIndex % disneyFacts.length);
-    } else if (gameState === "end") {
-      p.textSize(28);
-      p.text("🎉 Adventure Complete!", p.width / 2, p.height / 2 - 30);
-      p.textSize(20);
-      p.text(
-        `Your eco score: ${score}/${questions.length}`,
-        p.width / 2,
-        p.height / 2
-      );
-      p.textSize(16);
-      p.text(
-        "Thanks for helping the planet! 🌎",
-        p.width / 2,
-        p.height / 2 + 40
-      );
-      drawRestartButton();
-      drawDisneyCorner(1);
+    switch (gameState) {
+      case "intro":
+        p.textSize(28);
+        p.text("🌿 Welcome to Eco Quest! 🌎", p.width / 2, p.height / 2 - 40);
+        p.textSize(18);
+        p.text(
+          "Press ENTER or tap/click anywhere to begin.",
+          p.width / 2,
+          p.height / 2
+        );
+        break;
+
+      case "question":
+        drawQuestion(currentQuestion);
+        drawDisneyCorner(questionIndex % disneyFacts.length);
+        break;
+
+      case "feedback":
+        p.textSize(22);
+        p.text(feedbackText, p.width / 2, p.height / 2 - 30);
+        p.textSize(16);
+        p.text(
+          "Press ENTER or tap/click to continue.",
+          p.width / 2,
+          p.height / 2 + 30
+        );
+        drawDisneyCorner(questionIndex % disneyFacts.length);
+        break;
+
+      case "end":
+        p.textSize(28);
+        p.text("🎉 Adventure Complete!", p.width / 2, p.height / 2 - 30);
+        p.textSize(20);
+        p.text(
+          `Your eco score: ${score}/${questions.length}`,
+          p.width / 2,
+          p.height / 2
+        );
+        p.textSize(16);
+        p.text(
+          "Thanks for helping the planet! 🌎",
+          p.width / 2,
+          p.height / 2 + 40
+        );
+        drawRestartButton();
+        drawDisneyCorner(1);
+        break;
     }
   };
 
-  function drawRestartButton() {
-    let btnX = p.width / 2 - 75;
-    let btnY = p.height / 2 + 80;
-    let btnW = 150;
-    let btnH = 50;
-    let hovered =
-      p.mouseX > btnX &&
-      p.mouseX < btnX + btnW &&
-      p.mouseY > btnY &&
-      p.mouseY < btnY + btnH;
-    p.fill(hovered ? "#b3e6b3" : "#f0f0f0");
-    p.stroke(100, 180, 100);
-    p.strokeWeight(2);
-    p.rect(btnX, btnY, btnW, btnH, 14);
-    p.fill(30);
-    p.noStroke();
-    p.textSize(20);
-    p.text("Restart", p.width / 2, btnY + btnH / 2);
-  }
-
+  // --- Mouse Interaction ---
   p.mousePressed = function () {
-    if (gameState === "question") {
+    if (gameState === "intro") {
+      gameState = "question";
+    } else if (gameState === "question") {
       for (let i = 0; i < currentQuestion.options.length; i++) {
         let y = 260 + i * 90;
         if (
@@ -357,23 +187,16 @@ let sk5 = function (p) {
           handleAnswer(selected);
         }
       }
+    } else if (gameState === "feedback") {
+      nextQuestionOrEnd();
     } else if (gameState === "end") {
-      let btnX = p.width / 2 - 75;
-      let btnY = p.height / 2 + 80;
-      let btnW = 150;
-      let btnH = 50;
-      if (
-        p.mouseX > btnX &&
-        p.mouseX < btnX + btnW &&
-        p.mouseY > btnY &&
-        p.mouseY < btnY + btnH
-      ) {
-        resetGame();
-        gameState = "intro";
-      }
+      // Restart on any click
+      resetGame();
+      gameState = "intro";
     }
   };
 
+  // --- Keyboard Interaction ---
   p.keyPressed = function () {
     if (gameState === "intro" && p.keyCode === p.ENTER) {
       gameState = "question";
@@ -383,36 +206,14 @@ let sk5 = function (p) {
         handleAnswer(input);
       }
     } else if (gameState === "feedback" && p.keyCode === p.ENTER) {
-      questionIndex++;
-      if (questionIndex < questions.length) {
-        currentQuestion = questions[questionIndex];
-        gameState = "question";
-      } else {
-        gameState = "end";
-      }
+      nextQuestionOrEnd();
     } else if (gameState === "end" && (p.key === "r" || p.key === "R")) {
       resetGame();
       gameState = "intro";
     }
   };
 
-  p.keyTyped = function () {
-    if (gameState === "question") {
-      let input = p.key.toLowerCase();
-      if (input === "a" || input === "b") {
-        handleAnswer(input.toUpperCase());
-      } else {
-        let normalized = input.trim().toLowerCase();
-        for (let i = 0; i < currentQuestion.options.length; i++) {
-          let answerText = currentQuestion.options[i].toLowerCase();
-          if (answerText.includes(normalized)) {
-            handleAnswer(currentQuestion.options[i][0].toUpperCase());
-          }
-        }
-      }
-    }
-  };
-
+  // --- Handle answer logic ---
   function handleAnswer(choice) {
     playerChoice = choice;
     correctChoice = currentQuestion.correct;
@@ -425,7 +226,20 @@ let sk5 = function (p) {
     gameState = "feedback";
   }
 
+  // --- Move to next question or end game ---
+  function nextQuestionOrEnd() {
+    questionIndex++;
+    if (questionIndex < questions.length) {
+      currentQuestion = questions[questionIndex];
+      gameState = "question";
+    } else {
+      gameState = "end";
+    }
+  }
+
+  // --- Reset game state ---
   function resetGame() {
+    gameState = "intro";
     questionIndex = 0;
     score = 0;
     currentQuestion = questions[questionIndex];
@@ -434,6 +248,7 @@ let sk5 = function (p) {
     playerChoice = "";
   }
 
+  // --- Draw question and options ---
   function drawQuestion(q) {
     p.fill(40);
     p.textSize(20);
@@ -462,6 +277,23 @@ let sk5 = function (p) {
     }
   }
 
+  // --- Draw restart button ---
+  function drawRestartButton() {
+    let btnX = p.width / 2 - 75;
+    let btnY = p.height / 2 + 80;
+    let btnW = 150;
+    let btnH = 50;
+    p.fill("#b3e6b3");
+    p.stroke(180);
+    p.strokeWeight(2);
+    p.rect(btnX, btnY, btnW, btnH, 20);
+    p.fill(30);
+    p.noStroke();
+    p.textSize(20);
+    p.text("Restart", p.width / 2, btnY + btnH / 2);
+  }
+
+  // --- Draw background based on question theme ---
   function drawBackground() {
     let theme = "default";
     if (gameState === "question") {
@@ -492,6 +324,7 @@ let sk5 = function (p) {
       p.textSize(14);
       p.text("🎠 Disneyland!", 400, 30);
     } else {
+      // Default: sky gradient, clouds, grass, trees
       for (let y = 0; y < p.height; y++) {
         let inter = p.map(y, 0, p.height, 0, 1);
         let c = p.lerpColor(
@@ -512,6 +345,7 @@ let sk5 = function (p) {
     }
   }
 
+  // --- Draw a cloud ---
   function drawCloud(x, y, scale = 1) {
     p.noStroke();
     p.fill(255, 255, 255, 230);
@@ -521,6 +355,7 @@ let sk5 = function (p) {
     p.ellipse(x + 30 * scale, y + 10 * scale, 70 * scale, 50 * scale);
   }
 
+  // --- Draw a tree ---
   function drawTree(x, y) {
     p.fill(101, 67, 33);
     p.rect(x - 7, y + 30, 14, 50, 5);
@@ -530,14 +365,11 @@ let sk5 = function (p) {
     p.ellipse(x + 20, y + 25, 50, 40);
   }
 
+  // --- Draw Disney character and fact bubble ---
   function drawDisneyCorner(index) {
-    let fact = disneyFacts[index];
-
-    // Updated x and y position for the text
-    let textX = p.width - 160; // Moved slightly more to the right
-    let textY = p.height - 60; // Already lowered
-
-    // Draw speech bubble
+    let fact = disneyFacts[index % disneyFacts.length];
+    let textX = p.width - 160;
+    let textY = p.height - 60;
     let bubbleWidth = 180;
     let bubbleHeight = 90;
     p.fill(255);
@@ -550,8 +382,6 @@ let sk5 = function (p) {
       bubbleHeight,
       15
     );
-
-    // Draw triangle (speech tail)
     p.noStroke();
     p.fill(255);
     p.triangle(
@@ -566,7 +396,7 @@ let sk5 = function (p) {
     // Draw character
     fact.draw(textX + 40, textY + 40);
 
-    // Draw wrapped text
+    // Draw fact text
     p.fill(30);
     p.textSize(13);
     p.textAlign(p.CENTER, p.CENTER);
@@ -578,7 +408,50 @@ let sk5 = function (p) {
       bubbleWidth - 20
     );
   }
+
+  // --- Cartoon character drawing placeholders ---
+  function drawMickey(x, y) {
+    // Simple Mickey Mouse head
+    p.fill(0);
+    p.ellipse(x, y, 36, 36);
+    p.ellipse(x - 18, y - 18, 18, 18);
+    p.ellipse(x + 18, y - 18, 18, 18);
+  }
+  function drawDonald(x, y) {
+    // Simple Donald Duck head
+    p.fill(255);
+    p.ellipse(x, y, 36, 36);
+    p.fill(255, 204, 0);
+    p.ellipse(x, y + 18, 24, 10);
+    p.fill(0, 153, 255);
+    p.rect(x - 12, y - 18, 24, 8, 4);
+  }
+  function drawGoofy(x, y) {
+    // Simple Goofy head
+    p.fill(80, 50, 20);
+    p.ellipse(x, y, 36, 36);
+    p.fill(0, 180, 0);
+    p.rect(x - 8, y - 28, 16, 10, 4);
+    p.ellipse(x, y - 24, 16, 8);
+  }
+  function drawMinnie(x, y) {
+    // Simple Minnie Mouse head with bow
+    p.fill(0);
+    p.ellipse(x, y, 36, 36);
+    p.ellipse(x - 18, y - 18, 18, 18);
+    p.ellipse(x + 18, y - 18, 18, 18);
+    p.fill(255, 0, 120);
+    p.ellipse(x, y - 20, 16, 10);
+    p.rect(x - 8, y - 25, 16, 8, 4);
+  }
+  function drawPluto(x, y) {
+    // Simple Pluto head
+    p.fill(255, 220, 80);
+    p.ellipse(x, y, 36, 36);
+    p.fill(0);
+    p.ellipse(x - 16, y + 10, 10, 20);
+    p.ellipse(x + 16, y + 10, 10, 20);
+  }
 };
 
-// Mount the sketch into the div with id "c3"
 new p5(sk5, "c3");
