@@ -51,7 +51,7 @@ var sk2 = function (p) {
     p.push();
     p.noStroke();
     p.fill(0, 20);
-    p.ellipse(p.width * 0.85 + 8, cy + 8, 80, 80);
+    p.ellipse(p.width * 0.87 + 8, cy + 8, 80, 80);
     p.pop();
 
     // Gradient fill
@@ -95,9 +95,9 @@ var sk2 = function (p) {
 
     // Bulb
     p.fill("#d91f4e");
-    p.ellipse(p.width * 0.85, cy, 80, 80);
+    p.ellipse(p.width * 0.87, cy, 80, 80);
     p.fill(255, 100);
-    p.ellipse(p.width * 0.85 - 10, cy - 15, 20, 15);
+    p.ellipse(p.width * 0.87 - 10, cy - 15, 20, 15);
 
     let topOffset = -120;
     let bottomOffset = 120;

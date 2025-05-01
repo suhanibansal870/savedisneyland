@@ -6,6 +6,7 @@ let sk5 = function (p) {
   let feedbackText = "";
   let correctChoice = "";
   let playerChoice = "";
+  let finalCharacterIndex = 0;
 
   let questions = [
     {
@@ -318,8 +319,7 @@ let sk5 = function (p) {
         p.height / 2 + 40
       );
       drawRestartButton();
-      let idx = p.floor(p.random(disneyFacts.length));
-      drawDisneyCorner(idx);
+      drawDisneyCorner(1);
     }
   };
 
@@ -530,26 +530,53 @@ let sk5 = function (p) {
     p.ellipse(x + 20, y + 25, 50, 40);
   }
 
-  function drawDisneyCorner(idx) {
-    let cornerX = p.width - 150;
-    let cornerY = p.height - 140;
-    p.fill(255, 255, 255, 235);
+  function drawDisneyCorner(index) {
+    let fact = disneyFacts[index];
+
+    // Updated x and y position for the text
+    let textX = p.width - 160; // Moved slightly more to the right
+    let textY = p.height - 60; // Already lowered
+
+    // Draw speech bubble
+    let bubbleWidth = 180;
+    let bubbleHeight = 90;
+    p.fill(255);
     p.stroke(180);
     p.strokeWeight(2);
-    p.rect(cornerX - 20, cornerY - 60, 170, 90, 18);
-    p.triangle(
-      cornerX + 20,
-      cornerY + 30,
-      cornerX + 40,
-      cornerY + 30,
-      cornerX + 30,
-      cornerY + 60
+    p.rect(
+      textX + 70 - bubbleWidth / 2,
+      textY - bubbleHeight,
+      bubbleWidth,
+      bubbleHeight,
+      15
     );
+
+    // Draw triangle (speech tail)
     p.noStroke();
-    p.fill(40);
+    p.fill(255);
+    p.triangle(
+      textX + 70 - 10,
+      textY,
+      textX + 70 + 10,
+      textY,
+      textX + 70,
+      textY + 15
+    );
+
+    // Draw character
+    fact.draw(textX + 40, textY + 40);
+
+    // Draw wrapped text
+    p.fill(30);
     p.textSize(13);
-    p.text(disneyFacts[idx].fact, cornerX + 65, cornerY - 15, 120, 70);
-    disneyFacts[idx].draw(cornerX, cornerY + 55);
+    p.textAlign(p.CENTER, p.CENTER);
+    p.textWrap(p.WORD);
+    p.text(
+      fact.fact,
+      textX,
+      textY - bubbleHeight / 2 + bubbleHeight / 4,
+      bubbleWidth - 20
+    );
   }
 };
 
