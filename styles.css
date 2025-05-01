@@ -314,3 +314,25 @@ h5 {
     bottom: 2vw;
   }
 }
+
+/* ---- FIXED: Center #game and its #c3 content ---- */
+#game {
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Optional: also centers vertically if #game has height */
+  width: 100%;
+  padding: 4vh 0;
+  min-height: 400px; /* Adjust as needed for your sketch size */
+  box-sizing: border-box;
+}
+
+/* Optional: make sure #c3 doesn't stretch too wide */
+#c3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 800px; /* Adjust as needed */
+  min-height: 400px; /* Adjust as needed for your sketch */
+}
